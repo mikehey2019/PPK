@@ -1,0 +1,116 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+#include <stdio.h>
+
+using namespace std;
+
+void dodanie()
+{
+	char imie, nazwisko, mail;
+	cout<<"Podaj imie: "<<endl;	        cin>>imie;
+	cout<<"Podaj nazwisko: "<<endl;	    cin>>nazwisko;
+	cout<<"Podaj adres e-mail: "<<endl;	cin>>mail;
+			
+	fstream plik;
+	plik.open("kontakty.txt", ios::in | ios::app);
+	if(plik.good() == true)
+	{
+		plik<<imie<<" "<<nazwisko<<" "<<mail;
+		plik.close();
+	}
+}
+
+void usun_kontakt()
+{
+	fstream plik;
+	plik.open("kontakty.txt", ios::out);
+	if(plik.good() == true)
+		{
+			string linijka;
+				
+			do
+			{
+				getline(plik, linijka);
+				cout<<linijka<<endl;
+			}
+			while(linijka != "");
+	plik.close();
+}
+
+void zadanie()
+{
+	char data, godzina, typ, status, opis;
+	cout<<"Podaj date: "<<endl;	          cin>>data;
+	cout<<"Podaj godzine: "<<endl;	      cin>>godzina;
+	cout<<"Podaj typ zadania: "<<endl;	  cin>>typ;
+	cout<<"Podaj status zadania: "<<endl; cin>>status;
+	cout<<"Podaj opis zadania: "<<endl;   cin>>opis;
+			
+	fstream plik;
+	plik.open("zadania.txt", ios::in | ios::app);
+	if(plik.good() == true)
+		{
+			plik<<data<<" "<<godzina<<" "<<typ<<" "<<status<<" "<<opis<<endl;
+			plik.close();
+	}
+}
+
+void usun_zadanie()
+{
+	fstream plik;
+	plik.open("zadania.txt", ios::out);
+	if(plik.good() == true)
+		{
+			string linijka;
+				
+			do
+			{
+				getline(plik, linijka);
+				cout<<linijka<<edl;
+			}
+			while(linijka != "");
+			plik.close();
+		}
+}
+
+int main()
+{
+	int a;
+	char imie, nazwisko, mail;
+	char data, godzina, typ, status, opis;
+	
+	cout<<"Wybierz zadaie do wykonania: "<<endl;
+	cout<<"1. Dodanie nowego kontaktu. "<<endl;
+	cout<<"2. Usunięcie istniejacego kontaktu. "<<endl;
+	cout<<"3. Dodanie zadania. "<<endl;
+	cout<<"4. Usuniecie zadania. "<<endl;
+	cout<<"5. Wyswietlanie listy kontaktow. "<<endl;
+	cout<<"6. Filtrowanie listy kontaktow. "<<endl;
+	cout<<"7. Wyswietlanie listy zadan. "<<endl;
+	cout<<"8. Zmiana statusu zadania. "<<endl;
+	cout<<"9. Wyswietlanie listy zadan. "<<endl;
+	cout<<"10. Filtrowanie listy zadan. "<<endl;
+	
+	cin>>a;
+	
+	switch(a)
+		{
+		case 1:						
+			dodanie();
+		break;
+		
+		case 2:
+			usun_kontakt();
+		break;
+			
+		case 3:
+			zadanie();
+		break;
+		
+		case 4:
+			usun_zadanie();
+		break;
+		}	
+	
+}
